@@ -106,6 +106,7 @@ for item in jobj:
     if item is None:
         continue
     item["name"] = value_handler(item["name"])
+    item["description"] = value_handler(item["description"])
     item["message1"] = value_handler(item["message1"])
     item["message2"] = value_handler(item["message2"])
 with open("trans/Skills.json", mode="w", encoding="utf-8", buffering=4096) as f:
