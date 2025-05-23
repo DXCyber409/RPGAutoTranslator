@@ -8,8 +8,8 @@ import random
 import json
 
 def translate(text: str):
-    appid = 'xxxxxxxxxxxx'  # 填写你的appid
-    secretKey = 'xxxxxxxxxxxx'  # 填写你的密钥
+    appid = '20200914000565459'  # 填写你的appid
+    secretKey = 'XvYWj3cy17EE34GPAcFE'  # 填写你的密钥
 
     httpClient = None
     myurl = '/api/trans/vip/translate'
@@ -30,12 +30,10 @@ def translate(text: str):
         response = httpClient.getresponse()
         result_all = response.read().decode("utf-8")
         result = json.loads(result_all)
-        # print(result)
+        if result.get("error_code"):
+            print(result)
+            return text
         return result['trans_result'][0]['dst']
-
-    except Exception as e:
-        print(e)
-        return translate(text)
     finally:
         if httpClient:
             httpClient.close()
